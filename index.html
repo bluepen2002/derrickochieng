@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Derrick Ochieng - Web Developer Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      background-color: #0f4c81;
+      color: gold;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #083c66;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 40px 20px;
+    }
+    .hero {
+      text-align: center;
+    }
+    .hero img {
+      width: 180px;
+      border-radius: 50%;
+      margin-top: 20px;
+    }
+    .services, .portfolio-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background-color: #e6f0fa;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 280px;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #0f4c81;
+    }
+    .card p {
+      font-size: 14px;
+    }
+    .about {
+      background-color: #f7f9fc;
+      border-top: 3px solid #0f4c81;
+    }
+    .portfolio {
+      background-color: #f0f7ff;
+      border-top: 3px solid #0f4c81;
+    }
+    .portfolio-gallery img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      object-fit: cover;
+    }
+    .upload-area {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 25px;
+      background: white;
+      border: 2px dashed #0f4c81;
+      border-radius: 12px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .upload-area p {
+      margin: 10px 0;
+      color: #555;
+    }
+    .upload-area input[type="file"] {
+      width: 100%;
+      max-width: 100%;
+      margin: 15px 0;
+      padding: 8px 0;
+      box-sizing: border-box;
+    }
+    footer {
+      background-color: #0f4c81;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      section {
+        padding: 30px 15px;
+      }
+      .services, .portfolio-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        width: 100%;
+        max-width: 360px;
+      }
+      .upload-area {
+        padding: 20px 15px;
+        margin: 20px 10px;
+      }
+      .upload-area input[type="file"] {
+        font-size: 14px;
+      }
+    }
+
+    /* Admin button responsiveness */
+    .admin-button-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .admin-button {
+      padding: 12px 28px;
+      background: #0f4c81;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      max-width: 100%;
+      width: auto;
+      box-sizing: border-box;
+      min-width: 220px;
+    }
+    @media (max-width: 480px) {
+      .admin-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 180px;
+      }
+    }
+
+    /* Success message style */
+    #uploadSuccess {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 12px;
+      margin: 15px auto;
+      max-width: 600px;
+      border: 1px solid #c3e6cb;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* Hide clear button by default */
+    #clearPortfolioBtn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>DERRICK OCHIENG</h1>
+  <p>Web Developer | UI/UX Designer | Tech Enthusiast</p>
+</header>
+<nav>
+  <a href="#hero">Home</a>
+  <a href="#services">Services</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="hero" class="hero">
+  <img src="derrick_profile.png" alt="Derrick Ochieng">
+  <h2>Hello, I'm Derrick</h2>
+  <p>I specialize in building clean, functional, and visually engaging websites and desktop apps.</p>
+</section>
+
+<section id="services">
+  <h2 style="text-align: center;">My Services</h2>
+  <div class="services">
+    <div class="card">
+      <h3>🌐 Web Development</h3>
+      <p>Full-stack web design & development with HTML, CSS, JavaScript, PHP, MySQL, Firebase, and more.</p>
+    </div>
+    <div class="card">
+      <h3>🖥️ Desktop Applications</h3>
+      <p>Custom-built desktop software using Python (Tkinter, PyQt), Electron, and Java. Windows installers included.</p>
+    </div>
+    <div class="card">
+      <h3>📱 Responsive Design</h3>
+      <p>Modern, mobile-friendly user interfaces that scale across all devices beautifully.</p>
+    </div>
+    <div class="card">
+      <h3>🎨 Graphic Design</h3>
+      <p>Eye-catching visuals, branding, logos, banners, social media graphics, and print-ready designs.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Dashboard Interfaces</h3>
+      <p>Interactive and data-driven dashboard UI/UX design for business or education platforms.</p>
+    </div>
+    <div class="card">
+      <h3>⚙️ Automation & Tools</h3>
+      <p>Tools like timetable generators, exam planners, and case management systems tailored for institutions.</p>
+    </div>
+    <div class="card">
+      <h3>Projects worked on</h3>
+      <p>My Recent projects</p>
+      <ol>
+        <li>E-learning plattform African(AICN)</li>
+        <li>VoicePro</li>
+        <li>This is an assitantant voice application that provides you with all the information,<br>you might need to help yoy navigate through life</li>
+        <li>Osam Tradding website(Third Party website)</li>
+        <li>Bonga na Bro Jenga mtaa</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="portfolio">
+  <h2 style="text-align: center;">Portfolio</h2>
+  <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">Showcase of my recent work — screenshots, designs, websites, and more.</p>
+  
+  <div class="portfolio-gallery" id="portfolioGallery">
+    <!-- Images will be loaded here via JavaScript -->
+  </div>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <button id="clearPortfolioBtn" onclick="clearPortfolio()" style="padding: 10px 20px; background: #c0392b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+      Clear All Uploads (Admin)
+    </button>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2 style="text-align: center;">About Me</h2>
+  <div style="max-width: 800px; margin: auto; font-size: 16px; line-height: 1.8;">
+    <p>I'm a passionate developer based in Kenya with a keen interest in solving real-world problems through technology. My projects range from full-stack websites to smart desktop applications.</p>
+    <p>💼 I'm open to freelance opportunities and collaborations globally.</p>
+    <p>📚 Tech Stack: HTML, CSS, JavaScript, Python, PHP, Firebase, Java, MySQL, Git, Graphic Design</p>
+  </div>
+</section>
+
+<section id="contact" style="background-color: #e8f0fe; padding: 40px 20px;">
+  <h2 style="text-align: center; margin-bottom: 20px;">Contact Me</h2>
+  <div style="max-width: 800px; margin: 0 auto 40px; text-align: center; font-size: 18px; line-height: 2;">
+    <p><strong>📞 Call:</strong> <a href="tel:+254798051971">+254 798 051 971</a></p>
+    <p><strong>📧 Email:</strong> <a href="mailto:derrickochieng.dev@gmail.com">derrickochieng.dev@gmail.com</a></p>
+    <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/254798051971" target="_blank">Chat on WhatsApp</a></p>
+    <p><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/derrick-ochieng/" target="_blank">LinkedIn Profile</a></p>
+    <p><strong>🐱 GitHub:</strong> <a href="https://github.com/derrickjunior251" target="_blank">github.com/derrickjunior251</a></p>
+  </div>
+
+  <div class="admin-button-container">
+    <button class="admin-button" onclick="showUploadIfAdmin()">
+      Admin: Manage Portfolio
+    </button>
+  </div>
+
+  <div id="uploadSuccess"></div>
+
+  <div class="upload-area" id="uploadArea" style="display: none;">
+    <h3>Add Your Work to Portfolio</h3>
+    <p>Upload project screenshots, designs, or photos (PNG, JPG)</p>
+    <input type="file" id="portfolioUpload" accept="image/*" multiple>
+    <p><small>Images are saved in your browser only (localStorage)</small></p>
+
+    <button onclick="clearPortfolio()" style="margin-top: 20px; padding: 10px 24px; background: #c0392b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+      Clear All Uploads
+    </button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Derrick Ochieng. All rights reserved.</p>
+</footer>
+
+<script>
+// ───────────────────────────────────────────────
+// PORTFOLIO UPLOAD & DISPLAY (browser localStorage)
+// ───────────────────────────────────────────────
+
+const STORAGE_KEY = 'derrickPortfolioImages';
+const ADMIN_PASSWORD = 'derrick251';   // ← CHANGE THIS TO YOUR OWN SECRET PASSWORD
+
+let portfolioImages = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+let isAdmin = false;
+
+function loadPortfolio() {
+  const gallery = document.getElementById('portfolioGallery');
+  gallery.innerHTML = '';
+
+  if (portfolioImages.length === 0) {
+    gallery.innerHTML = '<p style="text-align:center; color:#777; font-style:italic;">No projects added yet.</p>';
+    return;
+  }
+
+  portfolioImages.forEach((src, index) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Portfolio item ${index + 1}`;
+    gallery.appendChild(img);
+  });
+}
+
+function showSuccessMessage(count) {
+  const msg = document.getElementById('uploadSuccess');
+  msg.textContent = `Success! ${count} image(s) added to portfolio.`;
+  msg.style.display = 'block';
+  
+  setTimeout(() => {
+    msg.style.display = 'none';
+  }, 4000);
+}
+
+function addToPortfolio(files) {
+  if (!isAdmin) return;
+
+  let loadedCount = 0;
+  const validFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+
+  if (validFiles.length === 0) return;
+
+  validFiles.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      portfolioImages.push(e.target.result);
+      loadedCount++;
+      if (loadedCount === validFiles.length) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(portfolioImages));
+        loadPortfolio();
+        showSuccessMessage(loadedCount);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function clearPortfolio() {
+  if (!isAdmin) {
+    alert("Only admin can clear uploads.");
+    return;
+  }
+  if (confirm("Are you sure you want to delete ALL uploaded images?")) {
+    portfolioImages = [];
+    localStorage.removeItem(STORAGE_KEY);
+    loadPortfolio();
+    alert("All uploads cleared.");
+  }
+}
+
+function showUploadIfAdmin() {
+  const pw = prompt("Enter password to access admin features:");
+  if (pw === ADMIN_PASSWORD) {
+    isAdmin = true;
+    document.getElementById('uploadArea').style.display = 'block';
+    document.getElementById('clearPortfolioBtn').style.display = 'block'; // show the one in portfolio section
+    alert("Admin access granted.");
+  } else {
+    alert("Incorrect password.");
+  }
+}
+
+// Event listeners
+document.getElementById('portfolioUpload').addEventListener('change', (e) => {
+  if (e.target.files.length > 0) {
+    addToPortfolio(e.target.files);
+    e.target.value = ''; // reset input
+  }
+});
+
+// Load on page open
+window.addEventListener('load', loadPortfolio);
+</script>
+</body>
+</html>
