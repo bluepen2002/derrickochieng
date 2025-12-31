@@ -4,134 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Derrick Ochieng - Web Developer Portfolio</title>
-  <!-- Supabase JS Client -->
+  <!-- Supabase JS Client - MUST be here in <head> -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #ffffff;
-      color: #333;
-    }
-    header {
-      background-color: #0f4c81;
-      color: gold;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background-color: #083c66;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    section {
-      padding: 40px 20px;
-    }
-    .hero {
-      text-align: center;
-    }
-    .hero img {
-      width: 180px;
-      border-radius: 50%;
-      margin-top: 20px;
-    }
-    .services, .portfolio-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .card {
-      background-color: #e6f0fa;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      width: 280px;
-    }
-    .card h3 {
-      margin-top: 0;
-      color: #0f4c81;
-    }
-    .card p {
-      font-size: 14px;
-    }
-    .about {
-      background-color: #f7f9fc;
-      border-top: 3px solid #0f4c81;
-    }
-    .portfolio {
-      background-color: #f0f7ff;
-      border-top: 3px solid #0f4c81;
-    }
-    .portfolio-gallery img {
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      object-fit: cover;
-    }
-    .upload-area {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 25px;
-      background: white;
-      border: 2px dashed #0f4c81;
-      border-radius: 12px;
-      text-align: center;
-      box-sizing: border-box;
-    }
-    .upload-area input[type="file"] {
-      width: 100%;
-      max-width: 100%;
-      margin: 15px 0;
-      padding: 8px 0;
-    }
-    footer {
-      background-color: #0f4c81;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-    }
+    body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #333; }
+    header { background: #0f4c81; color: gold; padding: 20px; text-align: center; }
+    nav { background: #083c66; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 40px 20px; }
+    .hero { text-align: center; }
+    .hero img { width: 180px; border-radius: 50%; margin-top: 20px; }
+    .services, .portfolio-gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .card { background: #e6f0fa; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 280px; }
+    .card h3 { margin-top: 0; color: #0f4c81; }
+    .card p, .card ol { font-size: 14px; }
+    .about { background: #f7f9fc; border-top: 3px solid #0f4c81; }
+    .portfolio { background: #f0f7ff; border-top: 3px solid #0f4c81; }
+    .portfolio-gallery img { width: 100%; max-width: 320px; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); object-fit: cover; }
+    .upload-area { max-width: 600px; margin: 30px auto; padding: 25px; background: white; border: 2px dashed #0f4c81; border-radius: 12px; text-align: center; box-sizing: border-box; }
+    .upload-area input[type="file"] { width: 100%; margin: 15px 0; padding: 8px 0; }
+    footer { background: #0f4c81; color: white; text-align: center; padding: 15px; font-size: 14px; }
+    .admin-button-container { text-align: center; margin: 30px 0; }
+    .admin-button { padding: 12px 28px; background: #0f4c81; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 15px; min-width: 220px; }
+    #uploadSuccess, #uploadError { display: none; padding: 12px; margin: 15px auto; max-width: 600px; border-radius: 6px; text-align: center; font-weight: bold; }
+    #uploadSuccess { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    #uploadError { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    #clearPortfolioBtn { display: none; padding: 10px 20px; background: #c0392b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
     @media (max-width: 600px) {
       section { padding: 30px 15px; }
       .services, .portfolio-gallery { flex-direction: column; align-items: center; }
       .card { width: 100%; max-width: 360px; }
       .upload-area { padding: 20px 15px; margin: 20px 10px; }
+      .admin-button { padding: 10px 20px; font-size: 14px; min-width: 180px; }
     }
-    .admin-button-container { text-align: center; margin: 30px 0; }
-    .admin-button {
-      padding: 12px 28px;
-      background: #0f4c81;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-      min-width: 220px;
-    }
-    #uploadSuccess, #uploadError {
-      display: none;
-      padding: 12px;
-      margin: 15px auto;
-      max-width: 600px;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: bold;
-    }
-    #uploadSuccess { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    #uploadError { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-    #clearPortfolioBtn { display: none; }
   </style>
 </head>
 <body>
@@ -162,20 +68,26 @@
     <div class="card"><h3>🎨 Graphic Design</h3><p>Eye-catching visuals, branding, logos, banners, social media graphics, and print-ready designs.</p></div>
     <div class="card"><h3>📊 Dashboard Interfaces</h3><p>Interactive and data-driven dashboard UI/UX design for business or education platforms.</p></div>
     <div class="card"><h3>⚙️ Automation & Tools</h3><p>Tools like timetable generators, exam planners, and case management systems tailored for institutions.</p></div>
-    <div class="card"><h3>Projects worked on</h3><p>My Recent projects</p><ol><li>E-learning platform African (AICN)</li><li>VoicePro</li><li>This is an assistant voice application that provides you with all the information you might need to help you navigate through life</li><li>Osam Trading website (Third Party website)</li><li>Bonga na Bro Jenga mtaa</li></ol></div>
+    <div class="card">
+      <h3>Projects worked on</h3>
+      <p>My Recent projects</p>
+      <ol>
+        <li>E-learning platform African (AICN)</li>
+        <li>VoicePro</li>
+        <li>This is an assistant voice application that provides you with all the information you might need to help you navigate through life</li>
+        <li>Osam Trading website (Third Party website)</li>
+        <li>Bonga na Bro Jenga mtaa</li>
+      </ol>
+    </div>
   </div>
 </section>
 
 <section id="portfolio" class="portfolio">
   <h2 style="text-align: center;">Portfolio</h2>
   <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">Showcase of my recent work — screenshots, designs, websites, and more.</p>
-  
   <div class="portfolio-gallery" id="portfolioGallery"></div>
-
   <div style="text-align: center; margin-top: 30px;">
-    <button id="clearPortfolioBtn" onclick="clearPortfolio()" style="padding: 10px 20px; background: #c0392b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
-      Clear All Uploads (Admin)
-    </button>
+    <button id="clearPortfolioBtn" onclick="clearPortfolio()">Clear All Uploads (Admin)</button>
   </div>
 </section>
 
@@ -209,8 +121,7 @@
     <h3>Add Your Work to Portfolio</h3>
     <p>Upload project screenshots, designs, or photos (PNG, JPG)</p>
     <input type="file" id="portfolioUpload" accept="image/*" multiple>
-    <p><small>Images are uploaded to Supabase — visible to everyone instantly</small></p>
-
+    <p><small>Images uploaded to Supabase — visible to everyone instantly</small></p>
     <button onclick="clearPortfolio()" style="margin-top: 20px; padding: 10px 24px; background: #c0392b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
       Clear All Uploads
     </button>
@@ -221,16 +132,16 @@
   <p>© 2025 Derrick Ochieng. All rights reserved.</p>
 </footer>
 
-<script><script>
+<script>
   // ───────────────────────────────────────────────
-  // SUPABASE CONFIG (using your publishable key)
+  // SUPABASE CONFIG - FIXED WITH QUOTES AROUND KEY
   // ───────────────────────────────────────────────
   const SUPABASE_URL = 'https://slqczqaymfjpjrlckpfc.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_mj1DPWYWbjVaJf517pmQmw_-FDraac9';
 
   const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const ADMIN_PASSWORD = 'derrick251'; // Change if desired
+  const ADMIN_PASSWORD = 'derrick251'; // Change this if you want
   let isAdmin = false;
 
   const BUCKET_NAME = 'portfolio-images';
@@ -346,7 +257,6 @@
   });
 
   window.addEventListener('load', loadPortfolio);
-</script>
 </script>
 </body>
 </html>
