@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Derrick Ochieng - Web Developer Portfolio</title>
-  <!-- Supabase JS Client - MUST be here in <head> -->
+  <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #333; }
@@ -134,14 +134,14 @@
 
 <script>
   // ───────────────────────────────────────────────
-  // SUPABASE CONFIG - FIXED WITH QUOTES AROUND KEY
+  // SUPABASE CONFIG - FIXED KEY WITH QUOTES
   // ───────────────────────────────────────────────
   const SUPABASE_URL = 'https://slqczqaymfjpjrlckpfc.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_mj1DPWYWbjVaJf517pmQmw_-FDraac9';
 
   const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const ADMIN_PASSWORD = 'derrick251'; // Change this if you want
+  const ADMIN_PASSWORD = 'derrick251';
   let isAdmin = false;
 
   const BUCKET_NAME = 'portfolio-images';
@@ -164,7 +164,7 @@
       return;
     }
 
-    if (!data?.length) {
+    if (!data || data.length === 0) {
       gallery.innerHTML = '<p style="text-align:center; color:#777; font-style:italic;">No projects added yet.</p>';
       return;
     }
