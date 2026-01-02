@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Derrick Ochieng - Web Developer Portfolio</title>
-  <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #333; }
@@ -133,9 +132,7 @@
 </footer>
 
 <script>
-  // ───────────────────────────────────────────────
-  // SUPABASE CONFIG - FIXED KEY WITH QUOTES
-  // ───────────────────────────────────────────────
+  // SUPABASE CONFIG
   const SUPABASE_URL = 'https://slqczqaymfjpjrlckpfc.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_mj1DPWYWbjVaJf517pmQmw_-FDraac9';
 
@@ -145,11 +142,11 @@
   let isAdmin = false;
 
   const BUCKET_NAME = 'portfolio-images';
-  const TABLE_NAME  = 'portfolio_images';
+  const TABLE_NAME = 'portfolio_images';
 
   async function loadPortfolio() {
     const gallery = document.getElementById('portfolioGallery');
-    gallery.innerHTML = '<p style="text-align:center; color:#777;">Loading portfolio...</p>';
+    gallery.innerHTML = '<p style="text-align:center; color:#777;">Loading...</p>';
 
     const { data, error } = await supabase
       .from(TABLE_NAME)
@@ -160,7 +157,7 @@
 
     if (error) {
       console.error('Load error:', error);
-      gallery.innerHTML = '<p style="color:red; text-align:center;">Failed to load portfolio</p>';
+      gallery.innerHTML = '<p style="color:red; text-align:center;">Failed to load</p>';
       return;
     }
 
@@ -190,7 +187,7 @@
     if (!isAdmin) return showMessage('uploadError', 'Admin access required.', true);
 
     const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
-    if (!validFiles.length) return showMessage('uploadError', 'No valid images selected.', true);
+    if (!validFiles.length) return showMessage('uploadError', 'No valid images.', true);
 
     let uploaded = 0;
 
@@ -215,8 +212,8 @@
         .insert({ url: publicUrl, name: file.name });
 
       if (dbErr) {
-        console.error('DB insert error:', dbErr);
-        showMessage('uploadError', `Metadata save failed for ${file.name}`, true);
+        console.error('DB error:', dbErr);
+        showMessage('uploadError', `Save failed for ${file.name}`, true);
       } else {
         uploaded++;
       }
@@ -224,15 +221,14 @@
 
     if (uploaded > 0) {
       await loadPortfolio();
-      showMessage('uploadSuccess', `Success! ${uploaded} image(s) added — visible to everyone!`);
+      showMessage('uploadSuccess', `Success! ${uploaded} image(s) added.`);
     }
   }
 
   async function clearPortfolio() {
-    if (!isAdmin || !confirm('Delete ALL images from portfolio?')) return;
+    if (!isAdmin || !confirm('Delete ALL images?')) return;
 
-    const { error } = await supabase.from(TABLE_NAME).delete().neq('id', '00000000-0000-0000-0000-000000000000');
-    if (error) console.error('Clear error:', error);
+    await supabase.from(TABLE_NAME).delete().neq('id', '00000000-0000-0000-0000-000000000000');
     await loadPortfolio();
     showMessage('uploadSuccess', 'Portfolio cleared.');
   }
@@ -243,7 +239,7 @@
       isAdmin = true;
       document.getElementById('uploadArea').style.display = 'block';
       document.getElementById('clearPortfolioBtn').style.display = 'inline-block';
-      alert('Admin access granted — uploads are public!');
+      alert('Admin access granted!');
     } else {
       alert('Incorrect password.');
     }
